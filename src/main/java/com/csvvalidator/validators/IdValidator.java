@@ -7,17 +7,21 @@ import java.util.Optional;
 
 public class IdValidator implements Validator {
 
+    private Optional<Violation> getViolation(final String message) {
+        return getViolation("id", message);
+    }
+
     @Override
     public Optional<Violation> validate(Line line) {
 
         final String value = line.id();
 
         if (isEmpty(value)) {
-            return getViolation("id", "The id is required.");
+            return getViolation("The id is required.");
         }
 
         if ( ! isValid(value)) {
-            return getViolation("id", "The id must be a number greater than 0.");
+            return getViolation("The id must be a number greater than 0.");
         }
 
         return Optional.empty();

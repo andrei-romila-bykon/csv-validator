@@ -13,10 +13,14 @@ import static org.assertj.core.api.Assertions.*;
 
 class CompanyValidatorTest {
 
+    static Line getLine(String company) {
+        return new Line(null, company, null, null, null, null, null);
+    }
+
     @Test
     void validate_whenNullCompany_receiveViolation() {
 
-        Line line = new Line(null, null, null, null, null, null);
+        Line line = getLine(null);
 
         Optional<Violation> violation = new CompanyValidator().validate(line);
 
@@ -27,7 +31,7 @@ class CompanyValidatorTest {
     @Test
     void validate_whenSpacesCompany_receiveViolation() {
 
-        Line line = new Line(null, "      ", null, null, null, null);
+        Line line = getLine("      ");
 
         Optional<Violation> violation = new CompanyValidator().validate(line);
 
@@ -35,10 +39,12 @@ class CompanyValidatorTest {
         assertThat(violation.get().message()).isEqualTo("The company name is required.");
     }
 
+
+
     @Test
     void validate_whenCompanyLengthGreaterThan50_receiveViolation() {
         String company51 = IntStream.range(0, 51).mapToObj(i -> "a").collect(Collectors.joining());
-        Line line = new Line(null, company51, null, null, null, null);
+        Line line = getLine(company51);
 
         Optional<Violation> violation = new CompanyValidator().validate(line);
 
@@ -50,7 +56,7 @@ class CompanyValidatorTest {
     @Test
     void validate_whenInvalidValueCompany_receiveViolation() {
 
-        Line line = new Line(null, "+?_.", null, null, null, null);
+        Line line = getLine("+?_.");
 
         Optional<Violation> violation = new CompanyValidator().validate(line);
 
@@ -60,7 +66,7 @@ class CompanyValidatorTest {
 
     @Test
     void validate_whenValidInput_receiveEmptyOptional() {
-        Line line = new Line(null, "Coca Cola", null, null, null, null);
+        Line line = getLine("Coca Cola");
 
         Optional<Violation> violation = new CompanyValidator().validate(line);
 

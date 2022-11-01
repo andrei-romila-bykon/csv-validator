@@ -11,10 +11,14 @@ import static org.assertj.core.api.Assertions.*;
 
 class IdValidatorTest {
 
+    private static Line getLine(String id) {
+        return new Line(id, null, null, null, null, null, null);
+    }
+
     @Test
     void validate_whenNullId_receiveViolation() {
 
-        Line line = new Line(null, null, null, null, null, null);
+        Line line = getLine(null);
 
         Optional<Violation> violation = new IdValidator().validate(line);
 
@@ -25,7 +29,7 @@ class IdValidatorTest {
     @Test
     void validate_whenEmptyId_receiveViolation() {
 
-        Line line = new Line("", null, null, null, null, null);
+        Line line = getLine("");
 
         Optional<Violation> violation = new IdValidator().validate(line);
 
@@ -36,7 +40,7 @@ class IdValidatorTest {
     @Test
     void validate_whenSpacesId_receiveViolation() {
 
-        Line line = new Line("      ", null, null, null, null, null);
+        Line line = getLine("      ");
 
         Optional<Violation> violation = new IdValidator().validate(line);
 
@@ -47,7 +51,7 @@ class IdValidatorTest {
     @Test
     void validate_whenNotNumericId_receiveViolation() {
 
-        Line line = new Line("not-a-number", null, null, null, null, null);
+        Line line = getLine("not-a-number");
 
         Optional<Violation> violation = new IdValidator().validate(line);
 
@@ -58,7 +62,7 @@ class IdValidatorTest {
     @Test
     void validate_whenNumberLessThanZeroId_receiveViolation() {
 
-        Line line = new Line("-1", null, null, null, null, null);
+        Line line = getLine("-1");
 
         Optional<Violation> violation = new IdValidator().validate(line);
 
@@ -69,7 +73,7 @@ class IdValidatorTest {
     @Test
     void validate_whenValidInput_receiveEmptyOptional() {
 
-        Line line = new Line("1", null, null, null, null, null);
+        Line line = getLine("1");
 
         Optional<Violation> violation = new IdValidator().validate(line);
 
