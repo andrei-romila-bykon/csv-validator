@@ -12,4 +12,13 @@ public record ValidationResult(int lineNumber, Line line, List<Violation> violat
     public boolean isValid() {
         return violations.size() == 0;
     }
+
+    /**
+     * Indicates if the current line is invalid
+     *
+     * @return True if its invalid and false otherwise
+     */
+    public boolean isInvalid() {
+        return ! isValid();
+    }
 }
