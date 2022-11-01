@@ -14,22 +14,54 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Main {
-    public static void main(String[] args) {
-        final List<Line> lines = readFile("companies.csv");
 
-        final List<Validator> validators = List.of(
-                new IdValidator(),
-                new CompanyValidator()
-        );
+    private static final List<Validator> validators = List.of(
+            new IdValidator(),
+            new CompanyValidator()
+    );
 
-        final List<ValidationResult> validationResults = IntStream.range(0, lines.size())
-                .mapToObj(index -> validate(index + 2, lines.get(index), validators))
-                .toList();
+    private static void printResults(List<Line> validRecords, List<ValidationResult> invalidRecords) {
+        System.out.println("ValidRecords: ");
+        validRecords.forEach(record -> System.out.println("\t" + record));
+        System.out.println();
 
-        System.out.println("validationResults = " + validationResults);
+        System.out.println("InvalidRecords: ");
+        invalidRecords.forEach(record -> {
+            System.out.println("\t Line number:" + record.lineNumber());
+            System.out.println("\t Line data: " + record.line());
+            record.violations().forEach(violation -> {
+                System.out.println("\t\t Violation: " + violation);
+            });
+            System.out.println();
+        });
     }
 
-    private static ValidationResult validate(final int lineNumber, final Line line, final List<Validator> validators) {
+    public static void main(String[] args) {
+
+        // Parse the entire file and transform it into the list of lines
+        final List<Line> lines = readFile("companies.csv");
+
+        // Validate the complete file and return get the ValidationResults
+        final List<ValidationResult> validationResults = IntStream.range(0, lines.size())
+                .mapToObj(index -> validate(index + 2, lines.get(index)))
+                .toList();
+
+        // Extract correct records
+        final List<Line> validRecords = validationResults.stream()
+                .filter(ValidationResult::isValid)
+                .map(ValidationResult::line)
+                .toList();
+
+        // Extract invalid records with all errors and line number
+        final List<ValidationResult> invalidRecords = validationResults.stream()
+                .filter(ValidationResult::isInvalid)
+                .toList();
+
+        // Print the results to the console
+        printResults(validRecords, invalidRecords);
+    }
+
+    private static ValidationResult validate(final int lineNumber, final Line line) {
         final List<Violation> violations = validators.stream()
                 .flatMap(validator -> validator.validate(line).stream())
                 .toList();
@@ -45,6 +77,4 @@ public class Main {
                 .map(Line::toLine)
                 .toList();
     }
-
-
 }
