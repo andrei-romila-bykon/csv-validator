@@ -6,7 +6,7 @@ import com.csvvalidator.validators.data.Violation;
 import java.util.List;
 import java.util.Optional;
 
-public class RfcValidator implements Validator {
+class RfcValidator implements Validator {
 
     private List<Line> lines;
 

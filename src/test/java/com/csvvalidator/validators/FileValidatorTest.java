@@ -35,4 +35,14 @@ class FileValidatorTest {
         assertThat(invalidRecords).hasSize(1);
         assertThat(invalidRecords.get(0).line().number()).isEqualTo(3);
     }
+
+    @Test
+    void getInvalidRecords_duplicatedEmails() {
+        FileValidator validator = new FileValidator("src/test/resources/emails_duplicates.csv");
+
+        List<ValidationResult> invalidRecords = validator.getInvalidRecords();
+
+        assertThat(invalidRecords).hasSize(2);
+        assertThat(invalidRecords.get(0).line().number()).isEqualTo(3);
+    }
 }

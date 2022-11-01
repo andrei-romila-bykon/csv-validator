@@ -25,7 +25,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        FileValidator validator = new FileValidator("src/main/resources/companies.csv");
+        // Create a new file validator to handle the details
+        final FileValidator validator = new FileValidator("src/main/resources/companies.csv");
 
         // Extract correct records
         final List<Line> validRecords = validator.getValidRecords();

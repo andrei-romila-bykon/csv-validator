@@ -1,0 +1,4 @@
+id,company,contact,rfc,email,phone,foreign
+1,Coca Cola, Jose Aguilar, RFD8833349DOX,john.doe@email.com,999000888,true
+2,Duplicated Cola, Popeye, RFD8833349DOX,john.doe@email.com,999000888,true
+M,Apple,Bryan O'Conner,RFC903DFR345,bryan.oconner@apple.it,999000333,true

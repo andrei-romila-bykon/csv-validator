@@ -5,7 +5,7 @@ import com.csvvalidator.validators.data.Violation;
 
 import java.util.Optional;
 
-public class ForeignValidator implements Validator {
+class ForeignValidator implements Validator {
 
     @Override
     public Optional<Violation> validate(Line line) {

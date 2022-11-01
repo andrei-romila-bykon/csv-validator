@@ -5,7 +5,7 @@ import com.csvvalidator.validators.data.Violation;
 
 import java.util.Optional;
 
-public interface Validator {
+interface Validator {
 
     Optional<Violation> validate(final Line line);
 

@@ -5,7 +5,7 @@ import com.csvvalidator.validators.data.Violation;
 
 import java.util.Optional;
 
-public class PhoneValidator implements Validator {
+class PhoneValidator implements Validator {
 
     @Override
     public Optional<Violation> validate(Line line) {

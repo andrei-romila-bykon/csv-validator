@@ -6,7 +6,7 @@ import com.csvvalidator.validators.data.Violation;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-public class CompanyValidator implements Validator {
+class CompanyValidator implements Validator {
 
     private static final Pattern pattern = Pattern.compile("^[a-z0-9 ]+$", Pattern.CASE_INSENSITIVE);
 
