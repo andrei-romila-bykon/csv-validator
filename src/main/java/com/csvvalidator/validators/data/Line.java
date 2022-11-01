@@ -1,6 +1,6 @@
 package com.csvvalidator.validators.data;
 
-public record Line(String id, String company, String contact, String rfc, String email, String foreign) {
+public record Line(String id, String company, String contact, String rfc, String email, String phone, String foreign) {
 
     public static Line toLine(final String value) {
 
@@ -13,7 +13,8 @@ public record Line(String id, String company, String contact, String rfc, String
                 get(fields, 2),
                 get(fields, 3),
                 get(fields, 4),
-                get(fields, 5));
+                get(fields, 5),
+                get(fields, 6));
     }
 
     /**

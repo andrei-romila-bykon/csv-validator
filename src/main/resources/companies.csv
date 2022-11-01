@@ -1,6 +1,6 @@
-id,company,contact,rfc,email,foreign
-1,Coca Cola, Jose Aguilar, RFD8833349DOX,john.doe@email.com,true
-2,Microsoft,Bill Gates,RFC999234HXD,bill.gates@microsoft.com,false
-M,Apple,Bryan O'Conner,RFC903DFR345,bryan.oconner@apple.it,true
-X,¡Invalid Company Name!,Bill Gates,RFC999234HXD,bill.gates@microsoft.com,false
+id,company,contact,rfc,email,phone,foreign
+1,Coca Cola, Jose Aguilar, RFD8833349DOX,john.doe@email.com,999000888,true
+2,Microsoft,Bill Gates,RFC999234HXD,bill.gates@microsoft.com,999000777,false
+M,Apple,Bryan O'Conner,RFC903DFR345,bryan.oconner@apple.it,999000333,true
+X,¡Invalid Company Name!,Bill Gates,RFC999234HXD,bill.gates@microsoft.com,x,false
 M
