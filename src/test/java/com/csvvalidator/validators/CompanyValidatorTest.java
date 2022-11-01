@@ -14,13 +14,13 @@ import static org.assertj.core.api.Assertions.*;
 class CompanyValidatorTest {
 
     static Line getLine(String company) {
-        return new Line(null, company, null, null, null, null, null);
+        return Line.toLine(1, "," + company + ", , , , ,");
     }
 
     @Test
     void validate_whenNullCompany_receiveViolation() {
 
-        Line line = getLine(null);
+        Line line = Line.toLine(1, "");
 
         Optional<Violation> violation = new CompanyValidator().validate(line);
 

@@ -2,7 +2,7 @@ package com.csvvalidator.validators.data;
 
 import java.util.List;
 
-public record ValidationResult(int lineNumber, Line line, List<Violation> violations) {
+public record ValidationResult(Line line, List<Violation> violations) {
 
     /**
      * Indicates if the current line is valid

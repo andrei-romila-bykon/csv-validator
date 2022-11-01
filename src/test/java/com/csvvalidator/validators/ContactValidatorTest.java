@@ -14,7 +14,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class ContactValidatorTest {
 
     private static Line getLine(String contact) {
-        return new Line(null, null, contact, null, null, null, null);
+        return new Line(1, null, null, contact, null, null, null, null);
+    }
+
+    @Test
+    void validate_whenValidContact_receiveEmptyOptional() {
+
+        // The contact is not required
+        Line line = getLine("Coca Cola");
+
+        Optional<Violation> violation = new ContactValidator().validate(line);
+
+        assertThat(violation).isEmpty();
     }
 
     @Test

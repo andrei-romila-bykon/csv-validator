@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 class IdValidatorTest {
 
     private static Line getLine(String id) {
-        return new Line(id, null, null, null, null, null, null);
+        return new Line(1, id, null, null, null, null, null, null);
     }
 
     @Test

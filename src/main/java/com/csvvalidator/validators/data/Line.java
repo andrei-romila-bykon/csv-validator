@@ -1,14 +1,15 @@
 package com.csvvalidator.validators.data;
 
-public record Line(String id, String company, String contact, String rfc, String email, String phone, String foreign) {
+public record Line(int number, String id, String company, String contact, String rfc, String email, String phone, String foreign) {
 
-    public static Line toLine(final String value) {
+    public static Line toLine(final int lineNumber, final String value) {
 
         // Split the line into fields
         final String[] fields = value.split(",");
 
         // Here we can create a valid line
-        return new Line(get(fields, 0),
+        return new Line(lineNumber,
+                get(fields, 0),
                 get(fields, 1),
                 get(fields, 2),
                 get(fields, 3),
