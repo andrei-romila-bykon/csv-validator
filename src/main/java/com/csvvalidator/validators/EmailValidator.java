@@ -5,8 +5,11 @@ import com.csvvalidator.validators.data.Violation;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 class EmailValidator implements Validator {
+
+    private static final Pattern pattern = Pattern.compile("^[a-z0-9+_.-]+@[a-z0-9.-]+\\.com(\\.mx)?$", Pattern.CASE_INSENSITIVE);
 
     private final List<Line> lines;
 
@@ -27,11 +30,19 @@ class EmailValidator implements Validator {
             return getViolation("The email address is required.");
         }
 
+        if ( ! isValid(value)) {
+            return getViolation("The email address contains invalid characters.");
+        }
+
         if (isDuplicated(line, value)) {
             return getViolation("The email address must be unique in the file.");
         }
 
         return Optional.empty();
+    }
+
+    private boolean isValid(final String value) {
+        return pattern.matcher(value).matches();
     }
 
     /**
