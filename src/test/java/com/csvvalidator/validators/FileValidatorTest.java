@@ -33,7 +33,7 @@ class FileValidatorTest {
         List<ValidationResult> invalidRecords = validator.getInvalidRecords();
 
         assertThat(invalidRecords).hasSize(1);
-        assertThat(invalidRecords.get(0).line().number()).isEqualTo(3);
+        assertThat(invalidRecords.get(0).line().number()).isEqualTo(2);
     }
 
     @Test
@@ -43,6 +43,17 @@ class FileValidatorTest {
         List<ValidationResult> invalidRecords = validator.getInvalidRecords();
 
         assertThat(invalidRecords).hasSize(2);
-        assertThat(invalidRecords.get(0).line().number()).isEqualTo(3);
+        assertThat(invalidRecords.get(0).line().number()).isEqualTo(2);
     }
+
+    @Test
+    void getInvalidRecords_duplicatedRfcs() {
+        FileValidator validator = new FileValidator("src/test/resources/rfcs_duplicates.csv");
+
+        List<ValidationResult> invalidRecords = validator.getInvalidRecords();
+
+        assertThat(invalidRecords).hasSize(2);
+        assertThat(invalidRecords.get(0).line().number()).isEqualTo(2);
+    }
+
 }
